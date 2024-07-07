@@ -1,15 +1,74 @@
 name: Test CI
 
 on:
-  push:
-    branches: master
   workflow_dispatch:
+  push:
+    branches: [master, main]
 
 jobs:
-  build_windows:
+  exe_default:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@master
-    - run: |
-        ./build.ps1 -NoPause
-        bin/test.exe
+    - name: Show config
+      run: ./show-config.ps1
+    - name: Build
+      run: ./buildexe.ps1
+    - name: Test
+      run: bin/testexe.exe
+
+  exe_disable_constexpr:
+    runs-on: windows-latest
+    env:
+      DISABLE_CONSTEXPR_MUTEX_CONSTRUCTOR: true
+    steps:
+    - uses: actions/checkout@master
+    - name: Show config
+      run: ./show-config.ps1
+    - name: Build
+      run: ./buildexe.ps1
+    - name: Test
+      run: bin/testexe.exe
+
+  dll_default:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Show config
+      run: ./show-config.ps1
+    - name: Build
+      run: ./builddll.ps1
+    - name: Test
+      run: |
+         Set-Location bin
+         java testjava
+
+  dll_disable_constexpr:
+    runs-on: windows-latest
+    env:
+      DISABLE_CONSTEXPR_MUTEX_CONSTRUCTOR: true
+    steps:
+    - uses: actions/checkout@master
+    - name: Show config
+      run: ./show-config.ps1
+    - name: Build
+      run: ./builddll.ps1
+    - name: Test
+      run: |
+         Set-Location bin
+         java testjava
+
+  dll_cleanup_cache:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Cleanup cache
+      run: ./cleanup-hostedtoolcache.ps1
+    - name: Show config
+      run: ./show-config.ps1
+    - name: Build
+      run: ./builddll.ps1
+    - name: Test
+      run: |
+         Set-Location bin
+         java testjava

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <ImportGroup Label="PropertySheets">
+    <Import Project="test-begin.props"/>
+  </ImportGroup>
+
+  <ItemGroup>
+    <ClCompile Include="testdll.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{90808644-7409-4D16-B6FB-B096686F7279}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>testdll</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <TargetExt>.dll</TargetExt>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+  </PropertyGroup>
+
+  <ImportGroup Label="PropertySheets">
+    <Import Project="test-end.props"/>
+  </ImportGroup>
+
+</Project>

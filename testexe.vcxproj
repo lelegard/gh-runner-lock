@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <ImportGroup Label="PropertySheets">
+    <Import Project="test-begin.props"/>
+  </ImportGroup>
+
+  <ItemGroup>
+    <ClCompile Include="testexe.cpp"/>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{DAA77608-8755-4E65-8FAE-6667C4317385}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>testexe</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <TargetExt>.exe</TargetExt>
+    <ConfigurationType>Application</ConfigurationType>
+  </PropertyGroup>
+
+  <ImportGroup Label="PropertySheets">
+    <Import Project="test-end.props"/>
+  </ImportGroup>
+
+</Project>
